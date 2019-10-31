@@ -1,4 +1,4 @@
-<h1> spinnaker-meetup </h1>
+<h1> Spinnaker-Meetup </h1>
 <h1> Spinnaker experimental deployment scenario: </h1>
 
 <p> Distributed mode deployment of spinnaker on kubernetes cluster <br>
