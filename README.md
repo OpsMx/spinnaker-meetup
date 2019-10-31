@@ -47,7 +47,7 @@ kubectl exec -it <halyard-pod-name> /bin/bash </p>
 <p> Try running hal command: <br>
 hal config 
 
-Execute hal commands to kick start basic spinnaker services:
+<h4> Execute hal commands to kick start basic spinnaker services: </h4>
 
 <p> hal config version edit --version 1.16.4 <br>
 (configuring spinnaker version) </p>
@@ -73,11 +73,11 @@ hal config provider kubernetes enable <br>
 
 Come out of pod
 
-Verify spinnaker service started:
+<h4> Verify spinnaker service started: </h4>
 
-kubectl get pods
+<p> kubectl get pods <br>
 
-(you will notice pods are coming up of various spinnaker services. It will take sometime for all pods to be in running state)
+(you will notice pods are coming up of various spinnaker services. It will take sometime for all pods to be in running state) </p>
 
 <h3> C. Exposing deck and gate endpoints locally to access spinnaker: </h3>
 
