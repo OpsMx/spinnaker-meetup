@@ -6,24 +6,24 @@ Using same kubernetes cluster as target cloud provider</p>
 
 <h2>Prerequisite for experimental Spinnaker setup: </h2>
 -------------------
-Experimental kubernetes cluster created using either minikube or kubeadm
-Kubectl binary and kubeconfig file to access kubernetes cluster
-Minio deployment
-Halyard deployment 
+<p> Experimental kubernetes cluster created using either minikube or kubeadm <br>
+Kubectl binary and kubeconfig file to access kubernetes cluster <br>
+Minio deployment <br>
+Halyard deployment </p>
 
 <h2>Steps:</h2>
 -------
 <h3> A.Setting up required infra:</h3>
-Download kubectl binary from below given link and follow steps:</h4>
-1. curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl
-2. chmod +x ./kubectl
-3. sudo mv ./kubectl /usr/local/bin/kubectl
+<h4> Download kubectl binary from below given link and follow steps:</h4>
+<p> 1. curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl <br>
+2. chmod +x ./kubectl <br>
+3. sudo mv ./kubectl /usr/local/bin/kubectl </p>
 
 <h3> Place kubeconfig file in ~/.kube folder named as "config" to access kubernetes cluster</h3>
 
 <h4> Download following files from this repo: </h4>
-1. halyard-deployment.yml
-2. minio-deployment.yml
+<p> 1. halyard-deployment.yml <br>
+2. minio-deployment.yml </p>
 
 kubectl create namespace <spinnaker-namespace>
 
