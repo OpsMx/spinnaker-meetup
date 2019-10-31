@@ -1,18 +1,18 @@
 <h1> spinnaker-meetup </h1>
 <h1> Spinnaker experimental deployment scenario: </h1>
-------------------------------
+
 <p> Distributed mode deployment of spinnaker on kubernetes cluster <br>
 Using same kubernetes cluster as target cloud provider</p>
 
 <h2>Prerequisite for experimental Spinnaker setup: </h2>
--------------------
+
 <p> Experimental kubernetes cluster created using either minikube or kubeadm <br>
 Kubectl binary and kubeconfig file to access kubernetes cluster <br>
 Minio deployment <br>
 Halyard deployment </p>
 
 <h2>Steps:</h2>
--------
+
 <h3> A.Setting up required infra:</h3>
 <h4> Download kubectl binary from below given link and follow steps:</h4>
 <p> 1. curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl <br>
@@ -33,43 +33,43 @@ kubectl apply -f minio-deployment.yml
 
 kubectl apply -f halyard-deployment.yml
 
-kubectl get pods
-(you will notice minio and halyard pods are running. It may be possible that halyard pod will take time to show running as status)
+<p> kubectl get pods <br>
+(you will notice minio and halyard pods are running. It may be possible that halyard pod will take time to show running as status) </p>
 
-Copy kubeconfig file to halyard pod for making same kubernetes cluster as target cloud provider:
-kubectl cp ~/.kube/config <halyard-pod-name>:/tmp/kubeconfig
+<p> Copy kubeconfig file to halyard pod for making same kubernetes cluster as target cloud provider: <br>
+kubectl cp ~/.kube/config <halyard-pod-name>:/tmp/kubeconfig </p>
 
 <h3>  B. Configuring spinnaker services using hal commands provided by halyard service: </h3>
 
-Enter inside halyard pod:
-kubectl exec -it <halyard-pod-name> /bin/bash
+<p> Enter inside halyard pod: <br>
+kubectl exec -it <halyard-pod-name> /bin/bash </p>
 
-Try running hal command:
+<p> Try running hal command: <br>
 hal config 
 
 Execute hal commands to kick start basic spinnaker services:
 
-hal config version edit --version 1.16.4
-(configuring spinnaker version)
+<p> hal config version edit --version 1.16.4 <br>
+(configuring spinnaker version) </p>
 
-hal config storage s3 edit --endpoint http://minio-service:9000 --access-key-id testingtest --secret-access-key --bucket <bucket-name> 
-(will prompt for secret-access-key, provide "testingtest")
-hal config storage s3 edit --path-style-access=true
-(enabling s3 compatible storage)
+<p> hal config storage s3 edit --endpoint http://minio-service:9000 --access-key-id testingtest --secret-access-key --bucket <bucket-name> <br> 
+(will prompt for secret-access-key, provide "testingtest") <br>
+hal config storage s3 edit --path-style-access=true <br>
+(enabling s3 compatible storage) </p>
 
-echo "spinnaker.s3.versioning: false" > ~/.hal/default/profile/front50-local.yml
-(Minio doesn’t support versioning objects, we need to disable it in Spinnaker)
+<p> echo "spinnaker.s3.versioning: false" > ~/.hal/default/profile/front50-local.yml <br>
+(Minio doesn’t support versioning objects, we need to disable it in Spinnaker) </p>
 
-hal config provider kubernetes account add k8s-v2-spin --provider-version v2  --kubeconfig-file /tmp/kubeconfig
-hal config provider kubernetes enable
-(configuring target cloud provider)
+<p> hal config provider kubernetes account add k8s-v2-spin --provider-version v2  --kubeconfig-file /tmp/kubeconfig <br>
+hal config provider kubernetes enable <br>
+(configuring target cloud provider) </p>
 
 
-hal config deploy edit --type Distributed --account-name k8s-v2-spin --location <spinnaker-namespace>
-(configuring mode of spinnaker deployment)
+<p> hal config deploy edit --type Distributed --account-name k8s-v2-spin --location <spinnaker-namespace> <br>
+(configuring mode of spinnaker deployment) </p>
 
-hal deploy apply
-(kick start spinnaker services)
+<p> hal deploy apply <br>
+(kick start spinnaker services) </p>
 
 Come out of pod
 
@@ -85,5 +85,5 @@ kubectl port-forward spin-deck 9000:9000
 
 kubectl port-forward spin-gate 8084:8084
 
-Now check spinnaker UI on browser:
-http://localhost:9000
+<p> Now check spinnaker UI on browser: <br>
+http://localhost:9000 </p>
