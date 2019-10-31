@@ -76,7 +76,6 @@ Come out of pod
 <h4> Verify spinnaker service started: </h4>
 
 <p> kubectl get pods <br>
-
 (you will notice pods are coming up of various spinnaker services. It will take sometime for all pods to be in running state) </p>
 
 <h3> C. Exposing deck and gate endpoints locally to access spinnaker: </h3>
