@@ -1,0 +1,48 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: spin-halyard
+  labels:
+    app: spin
+    stack: halyard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spin
+      stack: halyard
+  template:
+    metadata:
+      labels:
+        app: spin
+        stack: halyard
+    spec:
+      containers:
+      - name: halyard-daemon
+        image: gcr.io/spinnaker-marketplace/halyard:stable
+        imagePullPolicy: Always
+
+        readinessProbe:
+          exec:
+            command:
+            - wget
+            - -q
+            - --spider
+            - http://localhost:8064/health
+        ports:
+        - containerPort: 8064
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spin-halyard
+spec:
+  ports:
+    - port: 8064
+      targetPort: 8064
+      protocol: TCP
+  selector:
+    app: spin
+    stack: halyard
+  type: ClusterIP
+---
