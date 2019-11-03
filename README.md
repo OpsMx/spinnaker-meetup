@@ -55,9 +55,10 @@ hal config
 <p> hal config storage s3 edit --endpoint http://minio-service:9000 --access-key-id testingtest --secret-access-key --bucket <bucket-name> <br> 
 (will prompt for secret-access-key, provide "testingtest") <br>
 hal config storage s3 edit --path-style-access=true <br>
+hal config storage edit --type s3 <br>
 (enabling s3 compatible storage) </p>
 
-<p> echo "spinnaker.s3.versioning: false" > ~/.hal/default/profile/front50-local.yml <br>
+<p> mkdir –p ~/.hal/default/profiles && echo "spinnaker.s3.versioning: false" > ~/.hal/default/profiles/front50-local.yml <br>
 (Minio doesn’t support versioning objects, we need to disable it in Spinnaker) </p>
 
 <p> hal config provider kubernetes account add k8s-v2-spin --provider-version v2  --kubeconfig-file /tmp/kubeconfig <br>
